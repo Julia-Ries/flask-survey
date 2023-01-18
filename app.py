@@ -21,7 +21,7 @@ def show_survey_start():
 
 @app.route("/begin", methods=["POST"])
 def start_survey():
-    """show questions?"""
+    """clear the session of responses"""
 
     session[RESPONSES_KEY] = []
 
@@ -30,11 +30,12 @@ def start_survey():
 @app.route("/answer", methods=["POST"])
 def handle_question():
     """save choice and go onto next question"""
-
+# get the response choice
     choice = request.form['answer']
 
+ # add this response to the session
     responses = session[RESPONSES_KEY]
-    responses.appnend[choice]
+    responses.append[choice]
     session[RESPONSES_KEY] = responses
 
     if (len(responses) == len(survey.questions)):
